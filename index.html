@@ -37,6 +37,18 @@
     </div>
 
     <script>
+        const productForm = document.getElementById('product-form');
+        const productList = document.getElementById('product-list');
+
+        productForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const productoInput = document.getElementById('producto');
+            const fechaInput = document.getElementById('fecha');
+
+            const producto = productoInput.value;
+            const fecha = fechaInput.value;
+
                         if (producto && fecha) {
                 const row = document.createElement('tr');
                 row.innerHTML = `
@@ -52,6 +64,7 @@
                 productoInput.value = '';
                 fechaInput.value = '';
             }
+        });
                productList.addEventListener('click', function (e) {
             if (e.target.classList.contains('delete')) {
                 e.target.parentElement.parentElement.remove();
