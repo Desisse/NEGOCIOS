@@ -37,6 +37,21 @@
     </div>
 
     <script>
+                        if (producto && fecha) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${producto}</td>
+                    <td>${fecha}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm edit">Editar</button>
+                        <button class="btn btn-danger btn-sm delete">Borrar</button>
+                    </td>
+                `;
+                productList.appendChild(row);
+
+                productoInput.value = '';
+                fechaInput.value = '';
+            }
                productList.addEventListener('click', function (e) {
             if (e.target.classList.contains('delete')) {
                 e.target.parentElement.parentElement.remove();
