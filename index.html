@@ -30,6 +30,7 @@
             <thead>
                 <tr>
                     <th>Producto</th>
+                    <th>Descripcion</th>
                     <th>Fecha de Introducción</th>
                     <th>Acciones</th>
                 </tr>
@@ -48,15 +49,18 @@
             e.preventDefault();
 
             const productoInput = document.getElementById('producto');
+            const descripcionInput = document.getElementById('descripcion');
             const fechaInput = document.getElementById('fecha');
 
             const producto = productoInput.value;
+            const descripcion = descripcionInput.value;
             const fecha = fechaInput.value;
 
-                        if (producto && fecha) {
+            if (producto && descripcion && fecha) {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${producto}</td>
+                    <td>${descripcion}</td>
                     <td>${fecha}</td>
                     <td>
                         <button class="btn btn-warning btn-sm edit">Editar</button>
@@ -66,6 +70,7 @@
                 productList.appendChild(row);
 
                 productoInput.value = '';
+                descripcionInput.value = '';
                 fechaInput.value = '';
             }
         });
@@ -77,10 +82,12 @@
                 const cells = row.querySelectorAll('td');
 
                 const productoInput = document.getElementById('producto');
+                const descripcionInput = document.getElementById('descripcion');
                 const fechaInput = document.getElementById('fecha');
 
                 productoInput.value = cells[0].textContent;
-                fechaInput.value = cells[1].textContent;
+                descripcionInput.value = cells[1].textContent;
+                fechaInput.value = cells[2].textContent;
 
                 row.remove();
             }
