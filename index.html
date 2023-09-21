@@ -18,10 +18,7 @@
                 <label for="descripcion">Descripción:</label>
                 <textarea class="form-control" id="descripcion" required></textarea>
             </div>
-            <div class="form-group">
-                <label for="fecha">Fecha de Introducción:</label>
-                <input type="date" class="form-control" id="fecha" required>
-            </div>
+
             <br>
             <button type="submit" class="btn btn-primary">Agregar Producto</button>
         </form>
@@ -31,7 +28,6 @@
                 <tr>
                     <th>Producto</th>
                     <th>Descripcion</th>
-                    <th>Fecha de Introducción</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -50,18 +46,16 @@
 
             const productoInput = document.getElementById('producto');
             const descripcionInput = document.getElementById('descripcion');
-            const fechaInput = document.getElementById('fecha');
 
             const producto = productoInput.value;
             const descripcion = descripcionInput.value;
-            const fecha = fechaInput.value;
+            
 
-            if (producto && descripcion && fecha) {
+            if (producto && descripcion) {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${producto}</td>
                     <td>${descripcion}</td>
-                    <td>${fecha}</td>
                     <td>
                         <button class="btn btn-warning btn-sm edit">Editar</button>
                         <button class="btn btn-danger btn-sm delete">Borrar</button>
@@ -71,7 +65,7 @@
 
                 productoInput.value = '';
                 descripcionInput.value = '';
-                fechaInput.value = '';
+                
             }
         });
                productList.addEventListener('click', function (e) {
@@ -83,11 +77,9 @@
 
                 const productoInput = document.getElementById('producto');
                 const descripcionInput = document.getElementById('descripcion');
-                const fechaInput = document.getElementById('fecha');
 
                 productoInput.value = cells[0].textContent;
                 descripcionInput.value = cells[1].textContent;
-                fechaInput.value = cells[2].textContent;
 
                 row.remove();
             }
