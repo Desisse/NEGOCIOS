@@ -14,6 +14,7 @@
                 <label for="producto">Producto:</label>
                 <input type="text" class="form-control" id="producto" required>
             </div>
+            <br>
             <div class="form-group">
                 <label for="descripcion">Descripción:</label>
                 <textarea class="form-control" id="descripcion" required></textarea>
@@ -42,6 +43,7 @@
 
     <script>
         const productForm = document.getElementById('product-form');
+        const guardarButton = document.getElementById('guardar');
         const productList = document.getElementById('product-list');
         let productIdCounter = 1;
 
@@ -69,6 +71,7 @@
 
                 // Restaurar el botón a "Agregar Producto"
                 productForm.querySelector('button[type="submit"]').textContent = 'Agregar Producto';
+                guardarButton.style.display = 'none';
             } else if (producto && descripcion) {
                 //agregar un nuevo producto 
                 const row = document.createElement('tr');
@@ -79,8 +82,8 @@
                     <td>${producto}</td>
                     <td>${descripcion}</td>
                     <td>
-                        <button class="btn btn-warning btn-sm edit">Editar</button>
-                        <button class="btn btn-danger btn-sm delete">Borrar</button>
+                        <button class="btn btn-warning btn-sm editar" data-id="${productId}">Editar</button>
+                        <button class="btn btn-danger btn-sm borrar" data-id="${productId}">Borrar</button>
                     </td>
                 `;
                 productList.appendChild(row);
@@ -92,12 +95,12 @@
                
                
                
-             productList.addEventListener('click', function (e) {
-            if (e.target.classList.contains('delete')) {
+            productList.addEventListener('click', function (e) {
+            if (e.target.classList.contains('borrar')) {
                 const productId = e.target.dataset.id;
                 const row = productList.querySelector(`[data-product-id="${productId}"]`);
                 row.remove();
-            } else  if (e.target.classList.contains('delete')) {
+            } else if (e.target.classList.contains('editar')) {
                 const productId = e.target.dataset.id;
                 const row = productList.querySelector(`[data-product-id="${productId}"]`);
                 const cells = row.querySelectorAll('td');
@@ -111,6 +114,7 @@
 
                 // Cambiar el texto del botón a "Guardar Cambios"
                 productForm.querySelector('button[type="submit"]').textContent = 'Guardar Cambios';
+                guardarButton.style.display = 'inline-block';
             }
         });
     </script>
