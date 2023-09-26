@@ -22,15 +22,15 @@
             <input type="hidden" id="edit-product-id"> <!-- Campo oculto para almacenar el ID del producto en edición -->
 
             <br>
-            <button type="submit" class="btn btn-primary">Agregar Producto</button>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
         </form>
 
         <table class="table mt-4">
             <thead>
                 <tr>
-                    <th> ID </th>
+                    <th>ID</th>
                     <th>Producto</th>
-                    <th>Descripcion</th>
+                    <th>Descripción</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -54,7 +54,7 @@
 
             const producto = productoInput.value;
             const descripcion = descripcionInput.value;
-             const editProductId = editProductIdInput.value;
+            const editProductId = editProductIdInput.value;
 
             if (editProductId) {
                 // Modificar el producto existente
@@ -70,17 +70,18 @@
                 // Restaurar el botón a "Agregar Producto"
                 productForm.querySelector('button[type="submit"]').textContent = 'Agregar Producto';
             } else if (producto && descripcion) {
-                //agregar un nuevo producto 
+                // Agregar un nuevo producto
                 const row = document.createElement('tr');
                 const productId = productIdCounter;
                 row.dataset.productId = productId;
+
                 row.innerHTML = `
-                    <td>${productIdCounter}</td>
+                    <td>${productId}</td>
                     <td>${producto}</td>
                     <td>${descripcion}</td>
                     <td>
-                        <button class="btn btn-warning btn-sm edit">Editar</button>
-                        <button class="btn btn-danger btn-sm delete">Borrar</button>
+                        <button class="btn btn-warning btn-sm edit" data-id="${productId}">Editar</button>
+                        <button class="btn btn-danger btn-sm delete" data-id="${productId}">Borrar</button>
                     </td>
                 `;
                 productList.appendChild(row);
@@ -88,17 +89,17 @@
                 productoInput.value = '';
                 descripcionInput.value = '';
                 productIdCounter++;
-                            }});
-               
-               
-               
-             productList.addEventListener('click', function (e) {
+            }
+        });
+
+        productList.addEventListener('click', function (e) {
             if (e.target.classList.contains('delete')) {
                 const productId = e.target.dataset.id;
                 const row = productList.querySelector(`[data-product-id="${productId}"]`);
                 row.remove();
-            } else  if (e.target.classList.contains('delete')) {
-                const productId = e.target.dataset.id;
+            } else if (e.target.classList.contains('edit')) {
+                const productId = e.target.dataset.id0
+                ;
                 const row = productList.querySelector(`[data-product-id="${productId}"]`);
                 const cells = row.querySelectorAll('td');
                 const productoInput = document.getElementById('producto');
