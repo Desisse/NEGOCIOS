@@ -43,7 +43,6 @@
 
     <script>
         const productForm = document.getElementById('product-form');
-        const guardarButton = document.getElementById('guardar');
         const productList = document.getElementById('product-list');
         let productIdCounter = 1;
 
@@ -71,7 +70,10 @@
 
                 // Restaurar el botón a "Agregar Producto"
                 productForm.querySelector('button[type="submit"]').textContent = 'Agregar Producto';
-                guardarButton.style.display = 'none';
+                
+                //Limpiar los campos producto y descripcion 
+                productoInput.value = '';
+                descripcionInput.value = '';
             } else if (producto && descripcion) {
                 //agregar un nuevo producto 
                 const row = document.createElement('tr');
@@ -88,12 +90,13 @@
                 `;
                 productList.appendChild(row);
 
+                productIdCounter++;
+
+                //Limpiar los campos de nombre y descripcion 
                 productoInput.value = '';
                 descripcionInput.value = '';
-                productIdCounter++;
-                            }});
-               
-               
+                        }
+                    });          
                
             productList.addEventListener('click', function (e) {
             if (e.target.classList.contains('borrar')) {
@@ -114,7 +117,7 @@
 
                 // Cambiar el texto del botón a "Guardar Cambios"
                 productForm.querySelector('button[type="submit"]').textContent = 'Guardar Cambios';
-                guardarButton.style.display = 'inline-block';
+
             }
         });
     </script>
