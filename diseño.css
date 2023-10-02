@@ -1,0 +1,32 @@
+/* Cambia el fondo de la página */
+body {
+    background-color: #f0f0f0;
+}
+
+/* Estiliza las tablas */
+table {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #333;
+    color: #fff;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Estiliza los botones */
+.btn {
+    margin-right: 5px;
+}
